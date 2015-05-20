@@ -1,0 +1,26 @@
+#presentacion{
+    background-color:#202730;
+}
+
+.centroP{
+    margin:0 auto;
+    text-align:center;
+    
+}
+.centroP img{
+    width:70%;
+     max-width:400px;
+     min-width:130px;
+}
+.center-img-header{
+    
+    margin:0 auto;
+    text-align: center;
+    
+}
+
+.centerM{
+    margin:0 auto;
+    text-align:center;
+    
+}

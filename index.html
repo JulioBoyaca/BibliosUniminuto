@@ -2,23 +2,137 @@
 <html>
     <head>
         <title> Biblios Uniminuto</title>
-        <meta name="viewport" Content="width=device-width, initial-scale=1"  />  
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <meta charset="UTF-8">
+        <meta name="viewport" Content="width=device-width, initial-scale=1"  />
+        
+        <link rel="stylesheet" href="jquery/themes/temabiblios.min.css" />
+        <link rel="stylesheet" href="css/estilos.css" />
+        <link rel="stylesheet" href="jquery/jquery.mobile.structure-1.4.5.min.css" />
+    <!--<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" /> -->
+        <link rel="stylesheet" href="jquery/themes/jquery.mobile.icons.min.css" />
+        
         <script src="javascript/jquery-1.11.1.min.js"></script>
-        <script src="javascript/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="javascript/config.js"></script>
+        <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
         
     </head>
     <body>
-        
-        <div data-role="page" id="presentacion">
-            <img data-role="content" src="images/logobiblios2.png"></img>
+      
+        <div data-role="page" id="presentacion"  data-theme="c">
             <div data-role="content">
-                
+                <div class="centroP"> 
+                    <img  src="images/logobibliobn.png" />
+                </div>
+                <h6>La aplicación móbil de la biblioteca Rafael García Herreros</h6>
+                <a href="#sesion">sesion</a>
+                <a href="#busqueda">busqueda</a>
+                <a href="#resultados">resultados</a>
             </div>
-            <footer data-role="footer" data-position="fixed">
+            <footer data-role="footer" data-position="fixed" data-theme="c">
             <h6> Todos los derechos reservados </h6>
             </footer>
-        </div> <!--fin pag 1-->
+        </div>  <!--fin pag 1-->
         
+        
+        <div data-role="page" id="sesion">
+            <header data-role="header" data-theme="c">
+                <h1>BIBLIOS UNIMINUTO</h1>
+            </header><!-- /header -->
+            <div role="main" class="ui-content">
+                <h3>Iniciar Sesión</h3>
+                <label for="usuario">Usuario</label>
+                <input type="text" name="usuario" id="txt-usuari" value="">
+                <label for="txt-contraseña">contraseña</label>
+                <input type="password" name="txt-contraseña" id="txt-contraseña" value="">
+                <fieldset data-role="controlgroup">
+                    <input type="checkbox" name="chck-rememberme" id="chck-rememberme" checked="">
+                    <label for="chck-rememberme">Recordarme</label>
+                </fieldset>
+                <a href="#busqueda" >busqueda</a>
+                <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Iniciar sesión</a>
+                <div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" style="max-width:400px;">
+                    <div role="main" class="ui-content">
+                        <h3 class="mc-text-danger">Error al iniciar sesión</h3>
+                        <p>¿tus datos son correctos?</p> <br/>
+                        <p>Intentalo de nuevo</p>
+                        <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                    </div>
+                </div>
+            </div><!-- /content -->
+        </div><!--page -->
+
+        
+        <div data-role="page" id="busqueda" data-theme="c">
+            <header data-role="header">
+                 
+                 <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                    <div class="center-img-header ui-btn-inline">
+                        <img src="images/biblios-icon.png" />
+                    </div>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+  
+            </header>
+            <div data-role="content">
+                <form class="ui-filterable" >
+                    <input id="filterBasic-input" data-type="search" data-theme="b">
+                </form>
+<!--            <ul data-role="listview" data-filter="true" data-input="#filterBasic-input">
+                </ul>-->
+                <fieldset>
+                <input type="checkbox" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" data-theme="b">
+                <label for="checkbox-mini-0">Palabras adyacentes</label>
+                </fieldset></br> </br>
+                
+                <div class="ui-field-contain" ><!--seleciones-->
+                    <select name="select-custom-22" id="select-custom-1" data-native-menu="false" data-theme="a">
+                        <option>Campo de busqueda...</option>
+                        <option value="1">Todos</option>
+                        <option value="2">palabras en título</option>
+                        <option value="3">Autor</option>
+                        <option value="4">Año</option>
+                        <option value="5">ISBN</option>
+                        <option value="6">Numero de registro</option>
+                    </select></br>
+    
+                    <select name="select-custom-22" id="select-custom-2" data-native-menu="false" data-theme="a">
+                        <option>Formato...</option>
+                        <option value="7">Todos</option>
+                        <option value="8">libros</option>
+                        <option value="9">Pdf</option>
+                        <option value="10">Seriadas</option>
+                        <option value="11">Música</option>
+                        <option value="12">Mapas</option>
+                        <option value="13">Material visual</option>
+                        <option value="14">Materiales mixtos</option>
+                    </select>
+                </div> <!--seleciones-->
+                
+            </div> <!--contenido-->
+        </div>  <!--pagina-->
+        
+        <div data-role="page" id="resultados" data-theme="a">
+            <header data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                    <div class="center-img-header ui-btn-inline">
+                        <img src="images/biblios-icon.png" />
+                    </div>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header>
+            <div data-role="content">
+
+            </div> <!--contenido-->
+        </div>  <!--pagina-->
     </body>
 </html>
