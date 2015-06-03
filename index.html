@@ -10,11 +10,16 @@
         <link rel="stylesheet" href="jquery/jquery.mobile.structure-1.4.5.min.css" />
     <!--<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" /> -->
         <link rel="stylesheet" href="jquery/themes/jquery.mobile.icons.min.css" />
-        
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700"> <!--fontface-->
+		<link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome"><!--iconfont-->
+		<link rel="stylesheet" href="css/styleC.css"> <!--calendario estilos-->
         <script src="javascript/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="javascript/config.js"></script>
         <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
-        
+        <script src="javascript/simplecalendar.js" type="text/javascript"></script><!--calendario estilos-->
+        <!--rate-->
+        <link rel="stylesheet" href="/css/font-awesome.min.css"> <!--http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </head>
     <body>
       
@@ -27,6 +32,16 @@
                 <a href="#sesion">sesion</a>
                 <a href="#busqueda">busqueda</a>
                 <a href="#resultados">resultados</a>
+                <a href="#PLibro">perfil libro</a>
+                <a href="#reservas">reservas</a>
+                <a href="#renovar">renovar</a>
+                <a href="#solicitudCola">solicitudCola</a>
+                <a href="#perfil">perfil</a>
+                <a href="#favoritos">favoritos</a>
+                <a href="#historial">historial</a>
+                <a href="#eventos">eventos</a>
+                <a href="#demo-mail">mail</a>
+                <a href="#correo">correo</a>
             </div>
             <footer data-role="footer" data-position="fixed" data-theme="c">
             <h6> Todos los derechos reservados </h6>
@@ -35,7 +50,7 @@
         
         
         <div data-role="page" id="sesion">
-            <header data-role="header" data-theme="c">
+            <header class="headerbg" data-role="header" data-theme="c">
                 <h1>BIBLIOS UNIMINUTO</h1>
             </header><!-- /header -->
             <div role="main" class="ui-content">
@@ -48,8 +63,7 @@
                     <input type="checkbox" name="chck-rememberme" id="chck-rememberme" checked="">
                     <label for="chck-rememberme">Recordarme</label>
                 </fieldset>
-                <a href="#busqueda" >busqueda</a>
-                <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Iniciar sesión</a>
+                <a href="#dlg-invalid-credentials"  data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Iniciar sesión</a>
                 <div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" style="max-width:400px;">
                     <div role="main" class="ui-content">
                         <h3 class="mc-text-danger">Error al iniciar sesión</h3>
@@ -63,34 +77,59 @@
 
         
         <div data-role="page" id="busqueda" data-theme="c">
-            <header data-role="header">
+            <header class="headerbg" data-role="header">
                  
                  <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
                     <div class="centerM">
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
-                    <div class="center-img-header ui-btn-inline">
-                        <img src="images/biblios-icon.png" />
-                    </div>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                        <a href="#sesion" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
                     </div>
                 </div>
   
             </header>
             <div data-role="content">
-                <form class="ui-filterable" >
+                <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                <!-- ----------------busqueda y opciones-->
+                <form  class="ui-filterable" >
                     <input id="filterBasic-input" data-type="search" data-theme="b">
                 </form>
 <!--            <ul data-role="listview" data-filter="true" data-input="#filterBasic-input">
                 </ul>-->
-                <fieldset>
-                <input type="checkbox" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" data-theme="b">
-                <label for="checkbox-mini-0">Palabras adyacentes</label>
+                <fieldset >
+                    <input type="checkbox" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" data-theme="b">
+                    <label for="checkbox-mini-0">Palabras adyacentes</label>
                 </fieldset></br> </br>
                 
                 <div class="ui-field-contain" ><!--seleciones-->
-                    <select name="select-custom-22" id="select-custom-1" data-native-menu="false" data-theme="a">
+                    <select data-mini="true" name="select-custom-22" id="select-custom-1" data-native-menu="false" data-theme="a">
                         <option>Campo de busqueda...</option>
                         <option value="1">Todos</option>
                         <option value="2">palabras en título</option>
@@ -100,7 +139,7 @@
                         <option value="6">Numero de registro</option>
                     </select></br>
     
-                    <select name="select-custom-22" id="select-custom-2" data-native-menu="false" data-theme="a">
+                    <select data-mini="true" name="select-custom-22" id="select-custom-2" data-native-menu="false" data-theme="a">
                         <option>Formato...</option>
                         <option value="7">Todos</option>
                         <option value="8">libros</option>
@@ -112,27 +151,732 @@
                         <option value="14">Materiales mixtos</option>
                     </select>
                 </div> <!--seleciones-->
-                
+                <!-- ----------------fin busqueda y opciones-->
+                <p><a href="#resultados">resultados</a></p>
             </div> <!--contenido-->
         </div>  <!--pagina-->
         
         <div data-role="page" id="resultados" data-theme="a">
-            <header data-role="header" data-theme="c">
+            <header class="headerbg" data-role="header" data-theme="c">
                <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
                     <div class="centerM">
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
-                    <div class="center-img-header ui-btn-inline">
-                        <img src="images/biblios-icon.png" />
-                    </div>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
-                    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                        <a href="#busqueda" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
                     </div>
                 </div>
             </header>
+            
             <div data-role="content">
-
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <!--tablas-->
+                <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="seleccione más columnas" data-column-popup-theme="b">
+                <thead>
+                    <tr class="ui-bar-d">
+                        <th data-priority="1">Título</th>
+                        <th data-priority="2">autor</th>
+                        <th data-priority="3">año</th>
+                        <th data-priority="4">formato</th>
+                        <th data-priority="5">cant.</th>
+                    </tr>
+                </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <th><a href="#PLibro" data-rel="external">Citizen Kane</a></th>
+                                <td>jose franco</td> 
+                                <td>1941</td> 
+                                <td>Libro</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#'http://www.librospdf.net/libro/romance-de-lobos-comedia-barbara/19884/" data-rel="external">Duis gravida tellus</a></th>
+                                <td>Ruben Gonzales</td> 
+                                <td>1989</td> 
+                                <td>pdf</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">eget lectus</a></th>
+                                <td>Andrea Molina</td> 
+                                <td>2002</td> 
+                                <td>Audio</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external"> sed aliquam ligula</a></th>
+                                <td>Framcisco Gamba</td> 
+                                <td>1960</td> 
+                                <td>Mixtos</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                               <th><a href="#PLibro" data-rel="external">Vivamus at nibh sit amet</a></th>
+                                <td>Aida Castaño</td> 
+                                <td>1999</td> 
+                                <td>pdf</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">lacus sodales</a></th>
+                                <td>William medellín</td> 
+                                <td>1949</td> 
+                                <td>Libro</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">Vivamus non quam</a></th>
+                                <td>Miriam bayona</td> 
+                                <td>1979</td> 
+                                <td>pdf</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">Nam porta urna</a></th>
+                                <td>Diana Torres</td> 
+                                <td>2015</td> 
+                                <td>pdf</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">Pellentesque venenatis</a></th>
+                                <td>Edgar Bermudes</td> 
+                                <td>2009</td> 
+                                <td>Libro</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <th><a href="#PLibro" data-rel="external">Praesent suscipit</a></th>
+                                <td>jose Páez</td> 
+                                <td>2012</td> 
+                                <td>Libro</td>
+                                <td>2</td>
+                            </tr>
+                    </tbody>
+                </table>
+    <!--fin tablas-->
             </div> <!--contenido-->
         </div>  <!--pagina-->
+        
+        
+        <div data-role="page" id="PLibro">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#resultados" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <div id="portadal">
+                    <img src="images/portadal.jpg" /> </br>
+                    <div class="pos-star" >
+                        <div class="rating left">
+                            <div class="stars right">
+                                <a class="star rated"></a>
+                                <a class="star rated"></a>
+                                <a class="star rated"></a>
+                                <a class="star"></a>
+                                <a class="star"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div></br>
+                <!--tabs demos jquery mobile-->
+                <section >
+		            <div data-role="tabs" id="tabs" >
+			            <div data-role="navbar">
+			                <ul>
+			                    <li><a href="#one" data-ajax="false">solicitud</a></li>
+			                    <li><a href="#two" data-ajax="false">información</a></li>
+			                    <li><a href="#three" data-ajax="false">referencia</a></li>
+			               </ul>
+    		            </div>
+			            <div id="one" class="ui-body-d ui-content">
+				            <a href="#reservas" class="ui-btn ui-btn-inline">Reservar</a>
+			                <a href="#renovar" class="ui-btn ui-btn-inline">Renovar</a>
+			                <a href="#solicitudCola" class="ui-btn ui-btn-inline">Solicitud en cola</a>
+			            </div>
+			            <div id="two">
+				            <p><strong>Clasificación:</strong>741.65340876c</p>
+			                <p><strong>ISBN:</strong>41570098475</p>
+			                <p><strong>Autor:</strong>Santander P. Hugo Germán</p>
+			                <p><strong>Pie de imprenta:</strong>Bogotá; Uniminuto, 2015</p>
+			                <p><strong>Descripción:</strong>68 pag.; ilustraciones, fotos</p>
+			                <p><strong>Serie:</strong>Colección Uniminuto</p>
+			                <p><strong>Idioma:</strong>Español</p>
+			                <p><strong>Nota:</strong>Incluye bibliografía: Página : 68</p>
+			            </div>
+			            <div id="three">  
+			                <section >
+                                <ul data-role="listview" data-inset="true" data-theme="a">
+                                    <li data-role="list-divider">Referencias <span class="ui-li-count">2</span></li>
+                                    <li>
+                                        <a style="text-aligne:center">
+                                            <img class="solicitud-center-img" src="images/avatar.jpg" />
+                                            <h2>Nicolas Acosta</h2>
+                                            <p>Estelibro resolverá todas tus dudas </p>
+                                            <p>sobre como cobrar el diseño. recomendado!</p>
+                                            <p class="ui-li-aside">Hora: <strong>12:34</strong>Pm</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <img class="solicitud-center-img" src="images/avatar2.jpg" />
+                                            <h2>Samuel Molano</h2>
+                                            <p>Sus gráficas y fotos facilitan la </p>
+                                            <p>comprensión de este tema tan complejo.</p>
+                                            <p> Lo recomiendo</p>
+                                            <p class="ui-li-aside">Hora: <strong>2:50</strong>Pm</p>
+                                        </a>
+                                    </li>
+                                    </div>
+                                 </div>
+                            </section>
+			            </div>
+		               </div>
+	                </section>
+              
+        </div><!--page -->
+        
+        <div data-role="page" id="reservas">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#PLibro" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#corrreo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+            <div data-role="content" >
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <div class="ui-corner-all custom-corners">
+                    <div class="ui-bar ui-bar-a">
+                        <h6>Costos para comunicadores gráficos</h6>
+                    </div>
+                    <div class="ui-body ui-body-a">
+                        <em>El item tiene solicitud para recogerse</em>
+                        <p><strong>Clasificación: </strong>005133D34c2</p>
+                        <p><strong>Periodo:</strong>01-06-15 <strong>hasta: </strong>04-06-15</p>
+                        <small>NOTA: si no reclama el material, ocacionará una multa</small>
+                    </div></br>
+                    <div class="ui-bar ui-bar-a">
+                        <h6>Diseño curricular</h6>
+                    </div>
+                    <div class="ui-body ui-body-a">
+                        <em>en prestamo</em>
+                        <p><strong>Clasificación: </strong>025183D34a4</p>
+                        <p><strong>Periodo:</strong>12-05-15 <strong>hasta: </strong>31-05-15</p>
+                        <small>NOTA: si no reclama el material, ocacionará una multa</small>
+                    </div>
+                </div>
+            </div><!-- /content -->
+        </div><!--page -->
+        
+        <div data-role="page" id="renovar">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#PLibro" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#corrreo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+            <div data-role="content" >
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <div class="ui-corner-all custom-corners">
+                    <div class="ui-bar ui-bar-a">
+                        <h6>Costos para comunicadores gráficos</h6>
+                    </div>
+                    <div class="ui-body ui-body-a">
+                        <em>El item tiene solicitud de renovacion para recogerse</em>
+                        <p><strong>Clasificación: </strong>005133D34c2</p>
+                        <p><strong>Periodo:</strong>01-06-15 <strong>hasta: </strong>04-06-15</p>
+                        <small>NOTA: si no reclama el material, ocacionará una multa. Se permiten máximo 2 renovaciones</small>
+                    </div>
+                </div>
+            </div><!-- /content -->
+        </div><!--page -->
+        
+         <div data-role="page" id="solicitudCola">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#PLibro" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+            <div data-role="content" class="ui-content">
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li data-role="list-divider">Mayo de 2015 <span class="ui-li-count">2</span></li>
+                    <li>
+                        <a>
+                            <img class="solicitud-center-img" src="images/avatar.jpg" />
+                            <h2>Nicolas Acosta</h2>
+                            <p><strong>En cola: </strong>desde 23 hasta el 26</p>
+                            <p>actualmente tiene el material</p>
+                            <p class="ui-li-aside">Entrega: <strong>30-05-15</strong></p>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img class="solicitud-center-img" src="images/avatar2.jpg" />
+                            <h2>Samuel Molano</h2>
+                            <p><strong>En cola: </strong>desde 27 hasta el 30</p>
+                            <p>en cola</p>
+                            <p class="ui-li-aside">Entrega: <strong>30-05-15</strong></p>
+                        </a>
+                    </li>
+                    <li data-role="list-divider">Junio de 2015 <span class="ui-li-count">1</span></li>
+                    <li>
+                       <a>
+                            <img class="solicitud-center-img" src="images/avatar3.jpg" />
+                            <h2 id="gris">Andrea Molina <span>Tú</span></h2>
+                            <p><strong>En cola: </strong>desde 1 hasta el 4</p>
+                            <p>en cola     -se te notificará-</p>
+                            <p class="ui-li-aside">Entrega: <strong>30-05-15</strong></p>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /content -->
+        </div><!--page -->
+        <!-- ----------------paginas menu principal------------
+        ---------------------------------------
+        ----------------------------------------------------- -->
+         <div data-role="page" id="perfil">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#busqueda" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+            <div data-role="content" id="body-p">
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" >
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <div class="head-perfil" id="bg-img">
+                    <div class="avatar">
+                    <img src="images/avatar2.jpg" /> </br>
+                    <span>Camilo Torres</span> 
+                    </div>
+                </div> 
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <p>Me considero como una persona emprendedora, amante de los libros poéticos y de autores como Julio Cortazar, Gabriel Garcia Maques y Benny Him</p>
+                </div>
+                 <ul data-theme="c" data-role="listview" data-count-theme="b" data-inset="true">
+                    <li><a href="#correo">Tus mensajes <span class="ui-li-count">12</span></a></li>
+                </ul>
+                <div data-theme="c" data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+                    <h4>Alertas de reserva<span class="ui-li-count">2</span></h4>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Diseño Web- vence en 1 dia</li>
+                        <li>programar en java- en cola para mañana</li>
+                    </ul>
+                </div>
+                <div data-theme="c" data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >
+                    <h4>Mis reservas<span class="ui-li-count">1</span></h4>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Dos siglos de sátira y caricatura - <strong>finaliza hoy</strong></li>
+                    </ul>
+                </div> 
+                <div data-theme="c" data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >
+                    <h4>Favoritos<span class="ui-li-count">4</span></h4>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Dos sigles de sátira y caricatura </li>
+                        <li >Notas y reflexiones para un sistema inteligente</li>
+                        <li>simulacion y analisis de sistemas con Promodel</li>
+                        <li>Diseño y desarrollo curricular</li>
+                    </ul>
+                </div> 
+            </div><!-- /content -->
+        </div><!--page -->
+        
+         
+        
+        <div data-role="page" id="historial">
+            <header class="headerbg" data-role="header" data-theme="c">
+               <div class="ui-nodisc-icon" id="header-center"><!-- Classes added to the wrapper -->
+                    <div class="centerM">
+                        <a href="#busqueda" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+                        <div class="center-img-header ui-btn-inline">
+                            <img src="images/biblios-icon.png" />
+                        </div>
+                        <a href="#correo" class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-notext ui-btn-inline">Plus</a>
+                        <a href="#perfil" class="ui-btn ui-shadow ui-corner-all ui-icon-alert ui-btn-icon-notext ui-btn-inline">Minus</a>
+                        <a href="#externalpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Check</a>
+                    </div>
+                </div>
+            </header><!-- /header -->
+            
+            <div data-role="content" class="ui-content">
+                 <!-- ------------------panel inicio-->
+                <div data-role="panel" id="externalpanel" data-position="right" data-display="overlay" data-theme="c">
+                    <!--<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>-->
+                        <div id="profile">
+			                <img src="images/avatar.jpg">
+			                <div class="profile_info"><strong>Carlos Barrera</strong><br><small>Comunicador Gráfico</small></div>
+		                    <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext ui-btn-inline">Delete</a>
+		                </div> </br>
+                          <ul data-role="listview" style="padding: 8px" data-theme="a">
+                            <li data-icon="user"><a href="#perfil">perfil</a></li>
+                            <li data-icon="heart"><a href="#perfil">favoritos</a></li>
+                            <li data-icon="shop"><a href="#reservas">mis reservas</a></li>
+                            <li data-icon="bars"><a href="#historial">historial</a></li>
+                         </ul></br>
+                    
+                    <ul data-role="listview" style="padding: 8px">
+                        <li data-icon="search"><a href="#busqueda" class='sub1'>Búsqueda</a></li>
+                        <li data-icon="comment"><a href="#busqueda" class="sub2">publicaciones y revistas</a></li>
+                        <li data-icon="eye"><a href="#busqueda" class="sub2">Ebooks</a></li>
+                        <li data-icon="calendar"><a href="#evento" class="sub2">Eventos</a></li>
+                        <li data-icon="bullets"><a href="#" class="sub2">Hemeroteca</a></li>
+                    </ul>
+                </div>
+                <!-- ------------------panel fin -->
+                
+                <ul data-role="listview">
+                    <li><a href="#PLibro">vitae quam ut auctor - <small>Jhon Garcia (30-04-15)</small></a></li>
+                    <li><a href="#PLibro">Cras at magna - <small>Gilberto Torres (25-05-15)</small></a></li>
+                    <li><a href="#PLibro">lorem et venenatis - <small>Andrea Molina (31-05-15)</small></a></li>
+                    <li><a href="#PLibro">Curabitur eleifen - <small>Miguel Cruz (01-06-15)</small></a></li>
+                    <li><a href="#PLibro">amet neque ac - <small>Pilar Valbuena (03-06-15)</small></a></li>
+                </ul>
+                
+            </div><!-- /content -->
+        </div><!--page -->
+        
+         <div data-role="page" id="eventos"></br>
+            
+                <div class="calendar-container">
+			        <div class="calendar">
+				        <header>
+					        <h2 class="month"></h2>
+					        <a class="btn-prev fontawesome-angle-left" href="#"></a>
+					        <a class="btn-next fontawesome-angle-right" href="#"></a>
+				        </header>
+				            <table>
+					            <thead class="event-days">
+						            <tr></tr>
+					            </thead>
+					            <tbody class="event-calendar">
+						            <tr class="1"></tr>
+						            <tr class="2"></tr>
+						            <tr class="3"></tr>
+						            <tr class="4"></tr>
+						            <tr class="5"></tr>
+					            </tbody>
+				            </table>
+				            <div class="list">
+					            <div class="day-event" date-month="6" date-day="3">
+					            	<a href="#" class="close fontawesome-remove"></a>
+						            <h2 class="title">Presentación App</h2>
+						            <p class="date">2015-06-15</p>
+						            <p>Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok.</p>
+					            </div>
+					            <div class="day-event" date-month="6" date-day="14">
+						            <a href="#" class="close fontawesome-remove"></a>
+						            <h2 class="title">Biblio Cine</h2>
+						            <p class="date">Hora: 3:00pm</p>
+						            <p>Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok.</p>
+					            </div>
+					            <div class="day-event" date-month="7" date-day="4">
+						            <a href="#" class="close fontawesome-remove"></a>
+						            <h2 class="title">Curso en Bases de datos</h2>
+						            <p class="date">Hora:  8:00am a 10:00am</p>
+						            <p>Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok.</p>
+					            </div>
+				            </div>
+			        </div>
+		        </div>
+            <!-- /content -->
+        </div><!--page -->
+        
+       
+        
+        
+        <!-- ----------------------------------------------------------------
+        ------------------------------------------------------------------
+        ---------------------------nav bar icons -->
+        
+         <div data-role="page" id="correo">
+            
+        <div data-role="header" data-position="fixed" data-theme="a">
+            <h1>Bndeja de Entrada</h1>
+            <a href="#perfil" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+            <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+        </div><!-- /header -->
+
+        <div data-role="content" data-theme="d">
+            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete" data-split-theme="a">
+                <li>
+                    <a href="#demo-mail">
+                        <h3>Avery Walker</h3>
+                        <p class="topic"><strong>Re: Dinner Tonight</strong></p>
+                        <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
+                        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
+                    </a>
+                    <a href="#" class="delete" >Delete</a>
+                </li>
+                <li>
+                    <a href="#demo-mail">
+                        <h3>Amazon.com</h3>
+                        <p class="topic"><strong>4-for-3 Books for Kids</strong></p>
+                        <p>As someone who has purchased children's books from our 4-for-3 Store, you may be interested in these featured books.</p>
+                        <p class="ui-li-aside"><strong>4:37</strong>PM</p>
+                    </a>
+                    <a href="#" class="delete">Delete</a>
+                </li>
+                <li>
+                    <a href="#demo-mail">
+                        <h3>Mike Taylor</h3>
+                        <p class="topic"><strong>Re: This weekend in Maine</strong></p>
+                        <p>Hey little buddy, sorry but I can't make it up to vacationland this weekend. Maybe next weekend?</p>
+                        <p class="ui-li-aside"><strong>3:24</strong>PM</p>
+                    </a>
+                    <a href="#" class="delete">Delete</a>
+                </li>
+                <li>
+                    <a href="#demo-mail">
+                        <h3>Redfin</h3>
+                        <p class="topic"><strong>Redfin listing updates for today</strong></p>
+                        <p>There are 3 updates for the home on your watchlist: 1 updated MLS listing and 2 homes under contract.</p>
+                        <p class="ui-li-aside"><strong>2:52</strong>PM</p>
+                    </a>
+                    <a href="#" class="delete">Delete</a>
+                </li>
+                <li>
+                    <a href="#demo-mail">
+                        <h3>Angela Smith</h3>
+                        <p class="topic"><strong>Link Request</strong></p>
+                        <p>My name is Angela Smith, SEO Consultant. I've greatly enjoyed looking through your site and I was wondering if you'd be interested in providing a link</p>
+                        <p class="ui-li-aside"><strong>1:24</strong>PM</p>
+                    </a>
+                    <a href="#" class="delete">Delete</a>
+                </li>
+                <li>
+                        <a href="#demo-mail">
+                            <h3>Stephen Weber</h3>
+                            <p class="topic"><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+                            <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+                            <p class="ui-li-aside"><strong>11:24</strong>AM</p>
+                        </a>
+                        <a href="#" class="delete">Delete</a>
+                </li>
+            </ul>
+            
+            </div><!-- /content -->
+                <div id="confirm" class="ui-content" data-role="popup" data-theme="none">
+                    <p id="question">Are you sure you want to delete</p>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <a id="yes" data-role="button" data-mini="true" data-shadow="false" data-theme="b" data-rel="back">Yes</a>
+                        </div>
+                        <div class="ui-block-b">
+                            <a id="cancel" data-role="button" data-mini="true" data-shadow="false" data-theme="b" data-rel="back">Cancel</a>
+                        </div>
+                    </div>
+                </div><!-- /popup -->
+        </div><!--page -->
+        
+        
+         <div data-role="page" id="demo-mail">
+            
+        <div data-role="header" data-position="fixed" data-theme="a">
+            <h1>Bndeja de Entrada</h1>
+            <a href="#correo" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+            <a href="#" onclick="window.location.reload()" data-icon="delete" data-iconpos="notext">delete</a>
+        </div><!-- /header -->
+            <h2 id="head-mail">Material espera por ti</h2>
+            <p><small><strong>Ricky Eckhardt - Hoy 4:49pm</strong></small></p></br>
+            <p>Hey Samuel Molano,</p><br>
+            <p>Hello, how is it going! You did an awesome job on the project the other day! just wanted to say you are welcome back anytime! Give me a call if you want to talk.
+            </p><br>
+            <p>-Biblioteca Uniminuto</p>
+            
+            
+        </div><!--page -->
+        
+         
     </body>
 </html>
